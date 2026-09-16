@@ -1,7 +1,8 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include <mlx.h>
+# include "../libs/libft/libft.h"
+# include "../libs/minilibx-linux/mlx.h"
 
 /*
 ** ============================================================
@@ -61,5 +62,10 @@ typedef struct s_data
 	t_map		map;		// -> la rellena Persona A
 	t_player	player;		// -> la inicializa Persona A, la actualiza Persona B
 }	t_data;
+
+
+/*******************  Render functions part  ******************/
+void	innitialice_graphic_data(t_data *data);
+void	free_program(t_data *data);
 
 #endif
