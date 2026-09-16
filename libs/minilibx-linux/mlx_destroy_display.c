@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   innitialice_data.c                                 :+:      :+:    :+:   */
+/*   mlx_destroy_display.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmorente <mmorente@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/16 13:38:08 by mmorente          #+#    #+#             */
-/*   Updated: 2026/09/16 13:44:37 by mmorente         ###   ########.fr       */
+/*   Created: 2020/10/03 18:56:35 by mg                #+#    #+#             */
+/*   Updated: 2020/10/04 01:55:35 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/cub3D.h"
+#include "mlx_int.h"
 
-
-void	innitialice_graphic_data(t_data *data)
+int	mlx_destroy_display(t_xvar *xvar)
 {
-	void	*mlx;
-	void	*mlx_win;
-
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Cub3D");
-	data->mlx = mlx;
-	data->win = mlx_win;
+	XCloseDisplay(xvar->display);
 }
-
