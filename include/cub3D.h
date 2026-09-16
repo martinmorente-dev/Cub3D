@@ -67,5 +67,6 @@ typedef struct s_data
 /*******************  Render functions part  ******************/
 void	innitialice_graphic_data(t_data *data);
 void	free_program(t_data *data);
+void  window(t_data *data);
 
 #endif
