@@ -6,7 +6,7 @@
 /*   By: mmorente <mmorente@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/16 13:45:38 by mmorente          #+#    #+#             */
-/*   Updated: 2026/09/16 17:05:09 by mmorente         ###   ########.fr       */
+/*   Updated: 2026/09/17 11:42:19 by mmorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,21 @@
 
 void destroy_images(t_data *data)
 {
-  if (data->map.no_path)
-    mlx_destroy_image(data->mlx, data->map.no_path);
-  if (data->map.ea_path)
-    mlx_destroy_image(data->mlx, data->map.ea_path);
-  if (data->map.so_path)
-    mlx_destroy_image(data->mlx, data->map.so_path);
-  if (data->map.we_path)
-    mlx_destroy_image(data->mlx, data->map.we_path);
+  t_images  *images;
+
+  images = &data->map.images;
+  if (images->no_img)
+    mlx_destroy_image(data->mlx, images->no_img);
+  if (images->so_img)
+    mlx_destroy_image(data->mlx, images->so_img);
+  if (images->ea_img)
+    mlx_destroy_image(data->mlx, images->ea_img);
+  if (images->we_img)
+    mlx_destroy_image(data->mlx, images->we_img);
 }
 
 int close_window(t_data *data)
 {
-
   destroy_images(data);
   mlx_destroy_window(data->mlx, data->win);
   mlx_destroy_display(data->mlx);

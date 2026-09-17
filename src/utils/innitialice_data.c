@@ -6,7 +6,7 @@
 /*   By: mmorente <mmorente@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/16 13:38:08 by mmorente          #+#    #+#             */
-/*   Updated: 2026/09/16 16:16:39 by mmorente         ###   ########.fr       */
+/*   Updated: 2026/09/17 11:34:45 by mmorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,3 +24,19 @@ void	innitialice_graphic_data(t_data *data)
 	data->win = mlx_win;
 }
 
+int innitialice_images(t_data *data)
+{
+  int       width;
+  int       heigth;
+  t_images  *imgs;
+
+  imgs = &data->map.images;
+  imgs->ea_img = mlx_xpm_file_to_image(data->mlx, imgs->ea_path, &width, &heigth);
+  imgs->no_img = mlx_xpm_file_to_image(data->mlx, imgs->no_path, &width, &heigth);
+  imgs->we_img = mlx_xpm_file_to_image(data->mlx, imgs->we_path, &width, &heigth);
+  imgs->so_img = mlx_xpm_file_to_image(data->mlx, imgs->so_path, &width, &heigth);
+
+  if (!imgs->ea_img || !imgs->we_img || !imgs->no_img || !imgs->so_img)
+    return (0);
+  return (1);
+}

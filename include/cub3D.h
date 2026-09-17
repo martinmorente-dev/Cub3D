@@ -5,6 +5,25 @@
 # include "../libs/minilibx-linux/mlx.h"
 
 /*
+ * ====================
+ * t_images
+ *=====================
+ */
+typedef struct s_images
+{
+  
+  char	*no_path;			// ruta textura North
+	char	*so_path;			// ruta textura South
+	char	*we_path;			// ruta textura West
+	char	*ea_path;			// ruta textura East
+
+  void  *no_img;
+  void  *so_img;
+  void  *we_img;
+  void  *ea_img;
+} t_images;
+
+/*
 ** ============================================================
 ** t_map
 ** ------------------------------------------------------------
@@ -14,18 +33,14 @@
 */
 typedef struct s_map
 {
-	char	**grid;				// mapa, array de strings (una por fila)
-	int		width;				// ancho maximo del mapa (columna mas larga)
-	int		height;				// numero de filas del mapa
-
-	char	*no_path;			// ruta textura North
-	char	*so_path;			// ruta textura South
-	char	*we_path;			// ruta textura West
-	char	*ea_path;			// ruta textura East
-
-	int		floor_color[3];		// RGB floor  [0]=R [1]=G [2]=B
-	int		ceiling_color[3];	// RGB ceiling [0]=R [1]=G [2]=B
+	char	  **grid;				// mapa, array de strings (una por fila)
+	int		    width;				// ancho maximo del mapa (columna mas larga)
+	int		    height;				// numero de filas del mapa
+  t_images  images;
+	int	      floor_color[3];		// RGB floor  [0]=R [1]=G [2]=B
+	int		    ceiling_color[3];	// RGB ceiling [0]=R [1]=G [2]=B
 }	t_map;
+
 
 /*
 ** ============================================================
@@ -68,5 +83,7 @@ typedef struct s_data
 void	innitialice_graphic_data(t_data *data);
 void	free_program(t_data *data);
 void  window(t_data *data);
+int   innitialice_images(t_data *data);
+int   close_window(t_data *data);
 
 #endif
