@@ -6,7 +6,7 @@
 /*   By: mmorente <mmorente@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/16 13:45:38 by mmorente          #+#    #+#             */
-/*   Updated: 2026/09/17 11:42:19 by mmorente         ###   ########.fr       */
+/*   Updated: 2026/09/21 12:54:09 by mmorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 void destroy_images(t_data *data)
 {
-  t_images  *images;
+  t_images *images;
 
   images = &data->map.images;
-  if (images->no_img)
-    mlx_destroy_image(data->mlx, images->no_img);
-  if (images->so_img)
-    mlx_destroy_image(data->mlx, images->so_img);
-  if (images->ea_img)
-    mlx_destroy_image(data->mlx, images->ea_img);
-  if (images->we_img)
-    mlx_destroy_image(data->mlx, images->we_img);
+  if (images->textures[NORTH].img_ptr)
+    mlx_destroy_image(data->mlx, images->textures[NORTH].img_ptr);
+  if (images->textures[SOUTH].img_ptr)
+    mlx_destroy_image(data->mlx, images->textures[SOUTH].img_ptr);
+  if (images->textures[EAST].img_ptr)
+    mlx_destroy_image(data->mlx, images->textures[EAST].img_ptr);
+  if (images->textures[WEST].img_ptr)
+    mlx_destroy_image(data->mlx, images->textures[WEST].img_ptr);
 }
 
 int close_window(t_data *data)
@@ -39,8 +39,7 @@ int close_window(t_data *data)
 
 void window_control(t_data *data)
 {
-  mlx_hook(data->win, 17, 1L << 17,
-           (int (*)())(void *)close_window, data);
+  mlx_hook(data->win, 17, 1L << 17, (int (*)())(void *)close_window, data);
 }
 
 void window(t_data *data)

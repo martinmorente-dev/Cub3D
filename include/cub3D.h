@@ -1,26 +1,43 @@
 #ifndef CUB3D_H
-# define CUB3D_H
+#define CUB3D_H
 
-# include "../libs/libft/libft.h"
-# include "../libs/minilibx-linux/mlx.h"
+#include "../libs/libft/libft.h"
+#include "../libs/minilibx-linux/mlx.h"
+
+/*
+ *
+ * Enum para identificar que direccion vas a rellenar
+ *
+ */
+
+typedef enum e_direction {
+  NORTH = 0,
+  SOUTH = 1,
+  WEST = 2,
+  EAST = 3
+} t_direction;
 
 /*
  * ====================
  * t_images
  *=====================
  */
+typedef struct s_img {
+
+  void  *img_ptr; // Puntero identificando la imagen en mlx
+  char  *addr; // Direccion de la textura
+  int   bpp; // bits per pixel (Cuantos pixeles ocupa CADA pixel en memoria)
+  int   line_len; // Longitud de linea en bytes (Cuantos bytes ocupa una fila entera de la imagen)
+  int   endian; // El orden en que se guardan los bytes de cada color
+  int   width;
+  int   height;
+} t_img;
+
 typedef struct s_images
 {
-  
-  char	*no_path;			// ruta textura North
-	char	*so_path;			// ruta textura South
-	char	*we_path;			// ruta textura West
-	char	*ea_path;			// ruta textura East
+  char  *paths[4];
+  t_img textures[4];
 
-  void  *no_img;
-  void  *so_img;
-  void  *we_img;
-  void  *ea_img;
 } t_images;
 
 /*
@@ -31,16 +48,14 @@ typedef struct s_images
 ** Leída por:     PERSONA B (renderer / raycasting)
 ** ============================================================
 */
-typedef struct s_map
-{
-	char	  **grid;				// mapa, array de strings (una por fila)
-	int		    width;				// ancho maximo del mapa (columna mas larga)
-	int		    height;				// numero de filas del mapa
-  t_images  images;
-	int	      floor_color[3];		// RGB floor  [0]=R [1]=G [2]=B
-	int		    ceiling_color[3];	// RGB ceiling [0]=R [1]=G [2]=B
-}	t_map;
-
+typedef struct s_map {
+  char **grid; // mapa, array de strings (una por fila)
+  int width;   // ancho maximo del mapa (columna mas larga)
+  int height;  // numero de filas del mapa
+  t_images images;
+  int floor_color[3];   // RGB floor  [0]=R [1]=G [2]=B
+  int ceiling_color[3]; // RGB ceiling [0]=R [1]=G [2]=B
+} t_map;
 
 /*
 ** ============================================================
@@ -50,16 +65,15 @@ typedef struct s_map
 ** Actualizada por:  PERSONA B (renderer) -> movimiento, rotacion
 ** ============================================================
 */
-typedef struct s_player
-{
-	double	x;			// posicion X en el mapa (coordenadas de casilla, doble)
-	double	y;			// posicion Y en el mapa
-	double	dir_angle;	// angulo de direccion en radianes
-	double	dir_x;		// vector direccion (para raycasting)
-	double	dir_y;
-	double	plane_x;	// vector plano de camara
-	double	plane_y;
-}	t_player;
+typedef struct s_player {
+  double x;         // posicion X en el mapa (coordenadas de casilla, doble)
+  double y;         // posicion Y en el mapa
+  double dir_angle; // angulo de direccion en radianes
+  double dir_x;     // vector direccion (para raycasting)
+  double dir_y;
+  double plane_x; // vector plano de camara
+  double plane_y;
+} t_player;
 
 /*
 ** ============================================================
@@ -69,21 +83,19 @@ typedef struct s_player
 ** funciones, tanto de parseo como de render.
 ** ============================================================
 */
-typedef struct s_data
-{
-	void		*mlx;		// instancia mlx      -> la inicializa Persona B
-	void		*win;		// ventana mlx        -> la inicializa Persona B
+typedef struct s_data {
+  void *mlx; // instancia mlx      -> la inicializa Persona B
+  void *win; // ventana mlx        -> la inicializa Persona B
 
-	t_map		map;		// -> la rellena Persona A
-	t_player	player;		// -> la inicializa Persona A, la actualiza Persona B
-}	t_data;
-
+  t_map map;       // -> la rellena Persona A
+  t_player player; // -> la inicializa Persona A, la actualiza Persona B
+} t_data;
 
 /*******************  Render functions part  ******************/
-void	innitialice_graphic_data(t_data *data);
-void	free_program(t_data *data);
-void  window(t_data *data);
-int   innitialice_images(t_data *data);
-int   close_window(t_data *data);
+void innitialice_graphic_data(t_data *data);
+void free_program(t_data *data);
+void window(t_data *data);
+int innitialice_images(t_data *data);
+int close_window(t_data *data);
 
 #endif
