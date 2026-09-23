@@ -6,12 +6,11 @@
 /*   By: mmorente <mmorente@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/16 13:38:08 by mmorente          #+#    #+#             */
-/*   Updated: 2026/09/21 12:49:20 by mmorente         ###   ########.fr       */
+/*   Updated: 2026/09/23 13:22:08 by mmorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
-
 
 void	innitialice_graphic_data(t_data *data)
 {
@@ -48,4 +47,17 @@ int innitialice_images(t_data *data)
     i++;
   }
   return (1);
+}
+
+void	innitialice_screen(t_data *data)
+{
+	data->screen.img_ptr = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
+	data->screen.addr = mlx_get_data_addr(
+			data->screen.img_ptr,
+			&data->screen.bpp,
+			&data->screen.line_len,
+			&data->screen.endian
+			);
+	data->screen.width = WIN_WIDTH;
+	data->screen.height = WIN_HEIGHT;
 }
