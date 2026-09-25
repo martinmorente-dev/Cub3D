@@ -6,7 +6,7 @@
 /*   By: mmorente <mmorente@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/23 12:01:44 by mmorente          #+#    #+#             */
-/*   Updated: 2026/09/23 13:55:55 by mmorente         ###   ########.fr       */
+/*   Updated: 2026/09/25 11:55:29 by mmorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,25 +63,28 @@ void	calc_wall_dist(t_ray *ray)
 
 void	draw_column(t_data *data, t_ray *ray, int x)
 {
-	int	y;
-	int	color_ceiling;
-	int	color_floor;
-	int	color_wall;
+	int		y;
+	int		color_ceiling;
+	int		color_floor;
+	t_img	*tex;
 
 	color_ceiling = rgb_to_int(data->map.ceiling_color[0],
 			data->map.ceiling_color[1], data->map.ceiling_color[2]);
 	color_floor = rgb_to_int(data->map.floor_color[0],
 			data->map.floor_color[1], data->map.floor_color[2]);
-	color_wall = choose_wall_color(ray);
+	tex = choose_wall_texture(ray, data);
+	calc_tex_x(data, ray, tex);
 	y = 0;
+	while (y < ray->draw_start)
+	{
+		my_pixel_put(&data->screen, x, y, color_ceiling);
+		y++;
+	}
+	draw_wall_textured(data, ray, tex, x);
+	y = ray->draw_end + 1;
 	while (y < WIN_HEIGHT)
 	{
-		if (y < ray->draw_start)
-			my_pixel_put(&data->screen, x, y, color_ceiling);
-		else if (y <= ray->draw_end)
-			my_pixel_put(&data->screen, x, y, color_wall);
-		else
-		 	my_pixel_put(&data->screen, x, y, color_floor);
+		my_pixel_put(&data->screen, x, y, color_floor);
 		y++;
 	}
 }

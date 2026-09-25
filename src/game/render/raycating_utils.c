@@ -6,7 +6,7 @@
 /*   By: mmorente <mmorente@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/23 12:10:26 by mmorente          #+#    #+#             */
-/*   Updated: 2026/09/23 14:13:09 by mmorente         ###   ########.fr       */
+/*   Updated: 2026/09/25 11:55:09 by mmorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,14 @@ void	init_dda(t_data *data, t_ray *ray)
 	init_dda_y(data, ray);
 }
 
-int	choose_wall_color(t_ray *ray)
+t_img	*choose_wall_texture(t_ray *ray, t_data *data)
 {
-	if (ray->side == 1)
-		return (0xFFFF00);
-	else if (ray->ray_dir_x > 0)
-		return (0xFF0000);
+	if (ray->side == 0 && ray->ray_dir_x > 0)
+		return (&data->map.images.textures[EAST]);
+	else if (ray->side == 0)
+		return (&data->map.images.textures[WEST]);
+	else if (ray->ray_dir_y > 0)
+		return (&data->map.images.textures[SOUTH]);
 	else
-		return (0x00FF00);
+		return (&data->map.images.textures[NORTH]);
 }

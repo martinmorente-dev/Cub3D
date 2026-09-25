@@ -6,7 +6,7 @@
 /*   By: mmorente <mmorente@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/16 16:24:06 by mmorente          #+#    #+#             */
-/*   Updated: 2026/09/23 14:14:16 by mmorente         ###   ########.fr       */
+/*   Updated: 2026/09/25 12:08:31 by mmorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ int	main(void)
 	data.map.images.paths[EAST] = "./src/game/assets/se_texture.xpm";
 	data.player.x = 2.5;
 	data.player.y = 2.5;
-	data.player.dir_x = 0.0;
-	data.player.dir_y = -1.0;
-	data.player.plane_x = 0.66;
-	data.player.plane_y = 0.0;
+	data.player.dir_x = 0.707;
+	data.player.dir_y = 0.707;
+	data.player.plane_x = -0.66;
+	data.player.plane_y = 0.66;
 	game(&data);
 	return (0);
 }
