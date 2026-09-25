@@ -23,30 +23,29 @@ void	innitialice_graphic_data(t_data *data)
 	data->win = mlx_win;
 }
 
-int innitialice_images(t_data *data)
+int	innitialice_images(t_data *data)
 {
-  int       i;
-  t_images  *images;
+	int				i;
+	t_images		*images;
 
-  i = 0;
-  images = &data->map.images;
-  while (i < 4)
-  {
-    images->textures[i].img_ptr = mlx_xpm_file_to_image(
-      data->mlx,
-      images->paths[i],
-      &images->textures[i].width,
-      &images->textures[i].height);
-    if (!images->textures[i].img_ptr)
-      return (0);
-    images->textures[i].addr = mlx_get_data_addr(
-      images->textures[i].img_ptr,
-      &images->textures[i].bpp,
-      &images->textures[i].line_len,
-      &images->textures[i].endian);
-    i++;
-  }
-  return (1);
+	i = 0;
+	textures = &data->map.images;
+	while (i < 4)
+	{
+		textures[i].img_ptr = mlx_xpm_file_to_image(data->mlx,
+				images->textures.paths[i],
+				&images->textures[i].width,
+				&images->textures[i].height);
+		if (!images->textures[i].img_ptr)
+			return (0);
+		images->textures[i].addr = mlx_get_data_addr(
+				images->textures[i].img_ptr,
+				&images->textures[i].bpp,
+				&images->textures[i].line_len,
+				&images->textures[i].endian);
+		i++;
+	}
+	return (1);
 }
 
 void	innitialice_screen(t_data *data)

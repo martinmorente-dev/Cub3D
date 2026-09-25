@@ -14,7 +14,7 @@
 
 void	my_pixel_put(t_img *img, int x, int y, int color)
 {
-	char *pixel;
+	char	*pixel;
 
 	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
 	*(unsigned int *)pixel = color;
@@ -22,7 +22,7 @@ void	my_pixel_put(t_img *img, int x, int y, int color)
 
 int	get_texture_color(t_img *img, int x, int y)
 {
-	char *pixel;
+	char	*pixel;
 
 	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
 	return (*(unsigned int *)pixel);

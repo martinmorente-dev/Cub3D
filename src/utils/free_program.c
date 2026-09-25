@@ -12,25 +12,25 @@
 
 #include "../../include/cub3D.h"
 
-void free_matrix(void **pt)
+void	free_matrix(void **pt)
 {
-  int i;
+	int	i;
 
-  i = 0;
-  while (pt[i]) {
-    free(pt[i]);
-    i++;
-  }
-  free(pt);
+	i = 0;
+	while (pt[i])
+	{
+		free(pt[i]);
+		i++;
+	}
+	free(pt);
 }
 
-void free_map_st(t_map map)
+void	free_map_st(t_map map)
 {
 	free_matrix((void **)map.grid);
-  // TODO free the floor color & ceiling if there is any reservation with malloc / calloc / etc
 }
 
-void free_program(t_data *data)
+void	free_program(t_data *data)
 {
 	destroy_images(data);
 	free_map_st(data->map);

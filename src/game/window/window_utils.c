@@ -12,18 +12,17 @@
 
 #include "../../../include/cub3D.h"
 
-void destroy_images(t_data *data)
+void	destroy_images(t_data *data)
 {
-  t_images *images;
+	t_images	*images;
 
-  images = &data->map.images;
-  if (images->textures[NORTH].img_ptr)
-    mlx_destroy_image(data->mlx, images->textures[NORTH].img_ptr);
-  if (images->textures[SOUTH].img_ptr)
-    mlx_destroy_image(data->mlx, images->textures[SOUTH].img_ptr);
-  if (images->textures[EAST].img_ptr)
-    mlx_destroy_image(data->mlx, images->textures[EAST].img_ptr);
-  if (images->textures[WEST].img_ptr)
-    mlx_destroy_image(data->mlx, images->textures[WEST].img_ptr);
+	images = &data->map.images;
+	if (images->textures[NORTH].img_ptr)
+		mlx_destroy_image(data->mlx, images->textures[NORTH].img_ptr);
+	if (images->textures[SOUTH].img_ptr)
+		mlx_destroy_image(data->mlx, images->textures[SOUTH].img_ptr);
+	if (images->textures[EAST].img_ptr)
+		mlx_destroy_image(data->mlx, images->textures[EAST].img_ptr);
+	if (images->textures[WEST].img_ptr)
+		mlx_destroy_image(data->mlx, images->textures[WEST].img_ptr);
 }
-

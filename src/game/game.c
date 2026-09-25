@@ -12,14 +12,14 @@
 
 #include "../../include/cub3D.h"
 
-void  game(t_data *data)
+void	game(t_data *data)
 {
 	innitialice_graphic_data(data);
 	if (innitialice_images(data))
 	{
-	  innitialice_screen(data);
-	  mlx_loop_hook(data->mlx, render, data);
-	  window(data);
+		innitialice_screen(data);
+		mlx_loop_hook(data->mlx, render, data);
+		window(data);
 	}
 	else
 	{
@@ -29,5 +29,5 @@ void  game(t_data *data)
 		ft_printf("--> file doesn't exist\n");
 		ft_printf("--> incorrect permissions for file\n");
 		close_window(data);
-  }
+	}
 }

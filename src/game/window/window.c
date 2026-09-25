@@ -13,8 +13,7 @@
 #include "../../../include/cub3D.h"
 #include <unistd.h>
 
-
-int close_window(t_data *data)
+int	close_window(t_data *data)
 {
 	free_program(data);
 	if (data->screen.img_ptr)
@@ -36,14 +35,14 @@ int	key_press(int keycode, t_data *data)
 	return (0);
 }
 
-void controls(t_data *data)
+void	controls(t_data *data)
 {
 	mlx_hook(data->win, 17, 1L << 17, (int (*)())(void *)close_window, data);
 	mlx_hook(data->win, 2, 1L, (int (*)())(void *)key_press, data);
 }
 
-void window(t_data *data)
+void	window(t_data *data)
 {
-  controls(data);
-  mlx_loop(data->mlx);
+	controls(data);
+	mlx_loop(data->mlx);
 }

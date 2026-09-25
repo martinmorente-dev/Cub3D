@@ -35,7 +35,8 @@ void	draw_wall_textured(t_data *data, t_ray *ray, t_img *tex, int x)
 	int		color;
 
 	step = (double)tex->height / ray->line_height;
-	tex_pos = (ray->draw_start - WIN_HEIGHT / 2.0 + ray->line_height / 2.0) * step;
+	tex_pos = (ray->draw_start - WIN_HEIGHT
+			/ 2.0 + ray->line_height / 2.0) * step;
 	y = ray->draw_start;
 	while (y <= ray->draw_end)
 	{

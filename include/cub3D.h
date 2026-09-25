@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmorente <mmorente@student.42malaga.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/09/25 12:16:00 by mmorente          #+#    #+#             */
+/*   Updated: 2026/09/25 12:27:19 by mmorente         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -6,49 +18,46 @@
 # include <math.h>
 
 # ifndef WIN_WIDTH
-#	define WIN_WIDTH 1920
+#  define WIN_WIDTH 1920
 # endif
 
 # ifndef WIN_HEIGHT
-#	define WIN_HEIGHT 1080
+#  define WIN_HEIGHT 1080
 # endif
 /*
  *
  * Enum para identificar que direccion vas a rellenar
  *
  */
-
-	typedef enum e_direction
-	{
-  		NORTH = 0,
-  		SOUTH = 1,
-  		WEST = 2,
-  		EAST = 3
-	} t_direction;
+typedef enum e_direction
+{
+	NORTH = 0,
+	SOUTH = 1,
+	WEST = 2,
+	EAST = 3
+}	t_direction;
 
 /*
  * ====================
  * t_images
  *=====================
  */
-	typedef struct s_img
-	{
+typedef struct s_img
+{
+	void	*img_ptr; // Puntero identificando la imagen en mlx
+	char	*addr; // Direccion de la textura
+	int		bpp; // bits per pixel (Cuantos pixeles ocupa CADA pixel en memoria)
+	int		line_len; // Cuantos bytes ocupa una fila entera de la imagen
+	int		endian; // El orden en que se guardan los bytes de cada color
+	int		width;
+	int		height;
+}	t_img;
 
-		void  *img_ptr; // Puntero identificando la imagen en mlx
-		char  *addr; // Direccion de la textura
-		int   bpp; // bits per pixel (Cuantos pixeles ocupa CADA pixel en memoria)
-		int   line_len; // Longitud de linea en bytes (Cuantos bytes ocupa una fila entera de la imagen)
-		int   endian; // El orden en que se guardan los bytes de cada color
-		int   width;
-		int   height;
-	}	t_img;
-
-	typedef struct s_images
-	{
-  		char  *paths[4];
-  		t_img textures[4];
-
-	} t_images;
+typedef struct s_images
+{
+	char	*paths[4];
+	t_img	textures[4]; // Persona B es la que lo inicializa
+}	t_images;
 
 /*
 ** ============================================================
@@ -58,15 +67,15 @@
 ** Leída por:     PERSONA B (renderer / raycasting)
 ** ============================================================
 */
-	typedef struct s_map
-	{
-  		char **grid; // mapa, array de strings (una por fila)
-  		int width;   // ancho maximo del mapa (columna mas larga)
-  		int height;  // numero de filas del mapa
-  		t_images images;
-  		int floor_color[3];   // RGB floor  [0]=R [1]=G [2]=B
-  		int ceiling_color[3]; // RGB ceiling [0]=R [1]=G [2]=B
-	} t_map;
+typedef struct s_map
+{
+	char		**grid; // mapa, array de strings (una por fila)
+	int			width;	// ancho maximo del mapa (columna mas larga)
+	int			height;	// numero de filas del mapa
+	t_images	images;
+	int			floor_color[3];	// RGB floor  [0]=R [1]=G [2]=B
+	int			ceiling_color[3]; // RGB ceiling [0]=R [1]=G [2]=B
+}	t_map;
 
 /*
 ** ============================================================
@@ -76,16 +85,16 @@
 ** Actualizada por:  PERSONA B (renderer) -> movimiento, rotacion
 ** ============================================================
 */
-	typedef struct s_player
-	{
-  		double x;         // posicion X en el mapa (coordenadas de casilla, doble)
-  		double y;         // posicion Y en el mapa
-  		double dir_angle; // angulo de direccion en radianes
-  		double dir_x;     // vector direccion (para raycasting)
-  		double dir_y;
-  		double plane_x; // vector plano de camara
-  		double plane_y;
-	} t_player;
+typedef struct s_player
+{
+	double	x;		// posicion X en el mapa (coordenadas de casilla, doble)
+	double	y;		// posicion Y en el mapa
+	double	dir_angle; // angulo de direccion en radianes
+	double	dir_x;		// vector direccion (para raycasting)
+	double	dir_y;
+	double	plane_x; // vector plano de camara
+	double	plane_y;
+}	t_player;
 
 /*
  *
@@ -94,27 +103,27 @@
  *
  * */
 
-	typedef struct s_ray
-	{
-		double	camera_x;
-		double	ray_dir_x;
-		double	ray_dir_y;
-		int		map_x;
-		int		map_y;
-		double	delta_dist_x;
-		double	delta_dist_y;
-		double	side_dist_x;
-		double	side_dist_y;
-		int		step_x;
-		int		step_y;
-		int		side;
-		double	perp_wall_dist;
-		int		line_height;
-		int		draw_start;
-		int		draw_end;
-		double	wall_x;
-		int		text_x;
-	}	t_ray;
+typedef struct s_ray
+{
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	int		map_x;
+	int		map_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	int		step_x;
+	int		step_y;
+	int		side;
+	double	perp_wall_dist;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	double	wall_x;
+	int		text_x;
+}	t_ray;
 
 /*
 ** ============================================================
@@ -124,36 +133,35 @@
 ** funciones, tanto de parseo como de render.
 ** ============================================================
 */
-	typedef struct s_data
-	{
-		void *mlx; // instancia mlx      -> la inicializa Persona B
-		void *win; // ventana mlx        -> la inicializa Persona B
-
-		t_map map;       // -> la rellena Persona A
-		t_player player; // -> la inicializa Persona A, la actualiza Persona B
-		t_img	screen; // Screen to paint
-	} t_data;
+typedef struct s_data
+{
+	void		*mlx; // instancia mlx      -> la inicializa Persona B
+	void		*win; // ventana mlx        -> la inicializa Persona B
+	t_map		map;	// -> la rellena Persona A
+	t_player	player;	// -> la inicializa Persona A, la actualiza Persona B
+	t_img		screen; // Screen to paint
+}	t_data;
 
 /*******************  Render functions part  ******************/
-	void	innitialice_graphic_data(t_data *data);
-	void	free_program(t_data *data);
-	void	window(t_data *data);
-	void	innitialice_screen(t_data *data);
-	int		innitialice_images(t_data *data);
-	int		close_window(t_data *data);
-	void	destroy_images(t_data *data);
-	void	init_dda(t_data *data, t_ray *ray);
-	int		rgb_to_int(int r, int g, int b);
-	t_img	*choose_wall_texture(t_ray *ray, t_data *data);
-	void	my_pixel_put(t_img *img, int x, int y, int color);
-	int		render(t_data *data);
-	void	calc_ray_direction(t_data *data, t_ray *ray, int x);
-	void	perform_dda(t_data *data, t_ray *ray);
-	void	calc_wall_dist(t_ray *ray);
-	void	draw_column(t_data *data, t_ray *ray, int x);
-	void	game(t_data *data);
-	void	draw_wall_textured(t_data *data, t_ray *ray, t_img *tex, int x);
-	void	calc_tex_x(t_data *data, t_ray *ray, t_img *tex);
-	int		get_texture_color(t_img *img, int x, int y);
+void	innitialice_graphic_data(t_data *data);
+void	free_program(t_data *data);
+void	window(t_data *data);
+void	innitialice_screen(t_data *data);
+int		innitialice_images(t_data *data);
+int		close_window(t_data *data);
+void	destroy_images(t_data *data);
+void	init_dda(t_data *data, t_ray *ray);
+int		rgb_to_int(int r, int g, int b);
+t_img	*choose_wall_texture(t_ray *ray, t_data *data);
+void	my_pixel_put(t_img *img, int x, int y, int color);
+int		render(t_data *data);
+void	calc_ray_direction(t_data *data, t_ray *ray, int x);
+void	perform_dda(t_data *data, t_ray *ray);
+void	calc_wall_dist(t_ray *ray);
+void	draw_column(t_data *data, t_ray *ray, int x);
+void	game(t_data *data);
+void	draw_wall_textured(t_data *data, t_ray *ray, t_img *tex, int x);
+void	calc_tex_x(t_data *data, t_ray *ray, t_img *tex);
+int		get_texture_color(t_img *img, int x, int y);
 
 #endif
