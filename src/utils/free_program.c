@@ -6,7 +6,7 @@
 /*   By: mmorente <mmorente@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/16 13:59:22 by mmorente          #+#    #+#             */
-/*   Updated: 2026/09/16 16:25:55 by mmorente         ###   ########.fr       */
+/*   Updated: 2026/09/23 14:04:44 by mmorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,12 @@ void free_matrix(void **pt)
 
 void free_map_st(t_map map)
 {
-  free_matrix((void **)map.grid);
+	free_matrix((void **)map.grid);
   // TODO free the floor color & ceiling if there is any reservation with malloc / calloc / etc
 }
 
 void free_program(t_data *data)
 {
-  free_map_st(data->map);
+	destroy_images(data);
+	free_map_st(data->map);
 }
