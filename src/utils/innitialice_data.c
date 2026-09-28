@@ -6,7 +6,7 @@
 /*   By: mmorente <mmorente@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/16 13:38:08 by mmorente          #+#    #+#             */
-/*   Updated: 2026/09/23 13:22:08 by mmorente         ###   ########.fr       */
+/*   Updated: 2026/09/28 10:58:43 by mmorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	innitialice_images(t_data *data)
 	{
 		images->textures[i].img_ptr = mlx_xpm_file_to_image(
 				data->mlx,
-				images->textures.paths[i],
+				images->paths[i],
 				&images->textures[i].width,
 				&images->textures[i].height);
 		if (!images->textures[i].img_ptr)
