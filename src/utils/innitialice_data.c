@@ -29,10 +29,11 @@ int	innitialice_images(t_data *data)
 	t_images		*images;
 
 	i = 0;
-	textures = &data->map.images;
+	images = &data->map.images;
 	while (i < 4)
 	{
-		textures[i].img_ptr = mlx_xpm_file_to_image(data->mlx,
+		images->textures[i].img_ptr = mlx_xpm_file_to_image(
+				data->mlx,
 				images->textures.paths[i],
 				&images->textures[i].width,
 				&images->textures[i].height);
