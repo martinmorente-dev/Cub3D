@@ -6,12 +6,11 @@
 /*   By: mmorente <mmorente@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/16 13:45:38 by mmorente          #+#    #+#             */
-/*   Updated: 2026/09/23 14:06:28 by mmorente         ###   ########.fr       */
+/*   Updated: 2026/09/28 12:50:44 by mmorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cub3D.h"
-#include <unistd.h>
 
 int	close_window(t_data *data)
 {
@@ -30,15 +29,17 @@ int	close_window(t_data *data)
 
 int	key_press(int keycode, t_data *data)
 {
-	if (keycode == 65307)
+	if (keycode == ESC)
 		close_window(data);
+	set_key(&data->keys, keycode, 1);
 	return (0);
 }
 
 void	controls(t_data *data)
 {
 	mlx_hook(data->win, 17, 1L << 17, (int (*)())(void *)close_window, data);
-	mlx_hook(data->win, 2, 1L, (int (*)())(void *)key_press, data);
+	mlx_hook(data->win, 2, 1L << 0, key_press, data);
+	mlx_hook(data->win, 3, 1L << 1, key_release, data);
 }
 
 void	window(t_data *data)

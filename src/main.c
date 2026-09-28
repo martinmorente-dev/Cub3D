@@ -6,7 +6,7 @@
 /*   By: mmorente <mmorente@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/16 16:24:06 by mmorente          #+#    #+#             */
-/*   Updated: 2026/09/25 12:08:31 by mmorente         ###   ########.fr       */
+/*   Updated: 2026/09/28 12:47:02 by mmorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	main(void)
 	t_data	data;
 
 	ft_bzero(&data, sizeof(t_data));
+	ft_bzero(&data.keys, sizeof(t_keys));
 	data.map.grid = build_test_map();
 	data.map.width = 6;
 	data.map.height = 5;

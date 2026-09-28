@@ -6,7 +6,7 @@
 /*   By: mmorente <mmorente@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 12:16:00 by mmorente          #+#    #+#             */
-/*   Updated: 2026/09/25 12:27:19 by mmorente         ###   ########.fr       */
+/*   Updated: 2026/09/28 12:50:12 by mmorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,34 @@
 # include "../libs/minilibx-linux/mlx.h"
 # include <math.h>
 
-# ifndef WIN_WIDTH
-#  define WIN_WIDTH 1920
-# endif
+// Window size
 
-# ifndef WIN_HEIGHT
-#  define WIN_HEIGHT 1080
-# endif
+# define WIN_WIDTH 1920
+
+# define WIN_HEIGHT 1080
+
+// KEYS
+
+# define KEY_LEFT 65361
+
+# define KEY_RIGHT 65363
+
+# define ESC 65307
+
+# define KEY_W 119
+
+# define KEY_A 97
+
+# define KEY_S 115
+
+# define KEY_D 100
+
+// Other options
+
+# define MOVE_SPEED 0.05
+
+# define HITBOX 0.2
+
 /*
  *
  * Enum para identificar que direccion vas a rellenar
@@ -125,6 +146,19 @@ typedef struct s_ray
 	int		text_x;
 }	t_ray;
 
+// Struct for the KEYS
+
+typedef struct s_keys
+{
+	int	w;
+	int	a;
+	int	s;
+	int	d;
+	int	left;
+	int	right;
+}	t_keys;
+
+
 /*
 ** ============================================================
 ** t_data
@@ -137,6 +171,7 @@ typedef struct s_data
 {
 	void		*mlx; // instancia mlx      -> la inicializa Persona B
 	void		*win; // ventana mlx        -> la inicializa Persona B
+	t_keys		keys;
 	t_map		map;	// -> la rellena Persona A
 	t_player	player;	// -> la inicializa Persona A, la actualiza Persona B
 	t_img		screen; // Screen to paint
@@ -162,6 +197,10 @@ void	draw_column(t_data *data, t_ray *ray, int x);
 void	game(t_data *data);
 void	draw_wall_textured(t_data *data, t_ray *ray, t_img *tex, int x);
 void	calc_tex_x(t_data *data, t_ray *ray, t_img *tex);
+void	rotate_player(t_data *data, double angle);
 int		get_texture_color(t_img *img, int x, int y);
-
+void	update_player(t_data *data);
+void	move_player(t_data *data, double dx, double dy);
+int		key_release(int keycode, t_data *data);
+void	set_key(t_keys *keys, int keycode, int value);
 #endif

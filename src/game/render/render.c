@@ -6,7 +6,7 @@
 /*   By: mmorente <mmorente@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/22 11:21:21 by mmorente          #+#    #+#             */
-/*   Updated: 2026/09/23 13:56:51 by mmorente         ###   ########.fr       */
+/*   Updated: 2026/09/28 12:46:30 by mmorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ int	render(t_data *data)
 {
 	render_map(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->screen.img_ptr, 0, 0);
+	update_player(data);
 	return (0);
 }
