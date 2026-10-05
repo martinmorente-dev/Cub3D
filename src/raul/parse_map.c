@@ -24,10 +24,10 @@
 */
 void	parse_map(char *filename, t_data *data)
 {
-	open_cub_file(filename, data);
-	parse_config(data);
-	validate_map_chars(data);
-	normalize_map(data);
-	locate_player(data);
-	check_map_closed(data);
+	open_cub_file(filename, data); //abre el archivo
+	parse_config(data); //lee texturas y colores, y separa el mapa
+	validate_map_chars(data); //comprueba que el mapa solo tiene 0 1 N S E W
+	normalize_map(data); //deja el mapa ordenado (filas del mismo ancho)
+	locate_player(data); //busca al jugador (tiene que haber uno solo)
+	check_map_closed(data); //comprueba que el mapa esta rodeado de paredes
 }
