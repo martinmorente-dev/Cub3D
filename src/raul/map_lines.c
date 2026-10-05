@@ -63,27 +63,48 @@ static char	**lnode_list_to_grid(t_lnode *head, int len)
 	return (grid);
 }
 
-/* Lee todas las lineas restantes del archivo y las guarda en map.grid */
-int	fill_map_grid(t_data *data)
+/*
+** Lee TODO el archivo (configuracion + mapa) de una sola vez y
+** devuelve una lista enlazada con una linea por nodo. Separar
+** config de mapa se hace despues, fuera de esta funcion.
+*/
+t_lnode	*read_all_lines(int fd)
 {
 	t_lnode	*head;
 	t_lnode	*tail;
 	char	*line;
-	int		len;
 
 	head = NULL;
 	tail = NULL;
-	len = 0;
-	line = get_next_line(data->fd);
+	line = get_next_line(fd);
 	while (line)
 	{
 		push_lnode(&head, &tail, line);
+		line = get_next_line(fd);
+	}
+	return (head);
+}
+
+/*
+** Convierte en map.grid la parte de la lista que ya sabemos que
+** es el mapa (la configuracion se ha consumido antes de llamar
+** a esta funcion, en parse_config).
+*/
+int	fill_map_grid(t_data *data, t_lnode *lines)
+{
+	t_lnode	*tmp;
+	int		len;
+
+	len = 0;
+	tmp = lines;
+	while (tmp)
+	{
 		len++;
-		line = get_next_line(data->fd);
+		tmp = tmp->next;
 	}
 	if (len == 0)
 		parse_error(data, "no map content found in the file");
-	data->map.grid = lnode_list_to_grid(head, len);
+	data->map.grid = lnode_list_to_grid(lines, len);
 	data->map.height = len;
 	return (0);
 }
