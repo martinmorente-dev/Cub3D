@@ -14,15 +14,28 @@
 
 /*
 ** Quita el identificador (2 letras: NO/SO/WE/EA) y los espacios
-** sobrantes alrededor, y comprueba que queda una ruta no vacia.
+** sobrantes alrededor, y comprueba que queda una ruta no vacia
+** y que el archivo existe y se puede abrir. Libera "path" antes
+** de cada error (incluso vacia, ft_strtrim reserva 1 byte).
 */
 static char	*extract_path(t_config_ctx *ctx, char *line, int id_len)
 {
 	char	*path;
+	int		fd;
 
 	path = ft_strtrim(line + id_len, " \t\n");
 	if (!path || !path[0])
+	{
+		free(path);
 		config_error(ctx, "missing texture path in config line");
+	}
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
+	{
+		free(path);
+		config_error(ctx, "texture file could not be opened");
+	}
+	close(fd);
 	return (path);
 }
 

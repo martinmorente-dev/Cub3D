@@ -97,6 +97,7 @@ t_lnode	*read_all_lines(int fd);
 int		fill_map_grid(t_data *data, t_lnode *lines);
 void	compute_map_width(t_map *map);
 void	validate_map_chars(t_data *data);
+void	normalize_map(t_data *data);
 void	locate_player(t_data *data);
 
 /* Utilidades de parseo de configuracion */

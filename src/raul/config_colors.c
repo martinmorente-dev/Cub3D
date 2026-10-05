@@ -14,8 +14,9 @@
 
 /*
 ** Valida y convierte UN componente de color: solo digitos y
-** entre 0 y 255. Devuelve -1 si no es valido (nunca un color
-** real es negativo, asi que sirve como valor de error).
+** entre 0 y 255 (maximo 3 digitos, asi ft_atoi nunca desborda).
+** Devuelve -1 si no es valido (nunca un color real es negativo,
+** asi que sirve como valor de error).
 */
 static int	parse_component(char *s)
 {
@@ -30,7 +31,7 @@ static int	parse_component(char *s)
 			return (-1);
 		i++;
 	}
-	if (ft_atoi(s) > 255)
+	if (i > 3 || ft_atoi(s) > 255)
 		return (-1);
 	return (ft_atoi(s));
 }

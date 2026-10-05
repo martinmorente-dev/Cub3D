@@ -46,6 +46,17 @@ static void	check_flags_complete(t_config_ctx *ctx)
 		config_error(ctx, "missing F or C color line(s)");
 }
 
+/* Pone a 0 los 6 marcadores de "linea de config ya vista" */
+static void	init_flags(t_config_flags *flags)
+{
+	flags->no = 0;
+	flags->so = 0;
+	flags->we = 0;
+	flags->ea = 0;
+	flags->f = 0;
+	flags->c = 0;
+}
+
 /*
 ** Funcion publica: lee todo el archivo, consume las lineas de
 ** configuracion (rellenando t_map con texturas y colores) y deja
@@ -58,13 +69,10 @@ void	parse_config(t_data *data)
 	t_config_flags	flags;
 	t_config_ctx	ctx;
 
-	flags.no = 0;
-	flags.so = 0;
-	flags.we = 0;
-	flags.ea = 0;
-	flags.f = 0;
-	flags.c = 0;
+	init_flags(&flags);
 	lines = read_all_lines(data->fd);
+	close(data->fd);
+	data->fd = -1;
 	ctx.data = data;
 	ctx.flags = &flags;
 	ctx.lines = &lines;

@@ -26,8 +26,8 @@ void	parse_map(char *filename, t_data *data)
 {
 	open_cub_file(filename, data);
 	parse_config(data);
-	compute_map_width(&data->map);
 	validate_map_chars(data);
+	normalize_map(data);
 	locate_player(data);
 	check_map_closed(data);
 }
