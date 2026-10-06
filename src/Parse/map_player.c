@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "../../include/cub3D.h"
 
 /* Comprueba si un caracter es una de las 4 letras de jugador */
 static int	is_player_char(char c)
@@ -22,15 +22,17 @@ static int	is_player_char(char c)
 static void	set_player_dir(t_data *data, char c)
 {
 	if (c == 'N')
-		data->player.dir_angle = M_PI / 2;
-	else if (c == 'S')
 		data->player.dir_angle = -M_PI / 2;
+	else if (c == 'S')
+		data->player.dir_angle = M_PI / 2;
 	else if (c == 'E')
 		data->player.dir_angle = 0;
 	else
 		data->player.dir_angle = M_PI;
 	data->player.dir_x = cos(data->player.dir_angle);
 	data->player.dir_y = sin(data->player.dir_angle);
+	data->player.plane_x = -data->player.dir_y * 0.66;
+	data->player.plane_y = data->player.dir_x * 0.66;
 }
 
 /*
@@ -79,8 +81,8 @@ void	locate_player(t_data *data)
 		parse_error(data, "no player start position found in map");
 	if (count > 1)
 		parse_error(data, "more than one player start position in map");
-	data->player.y = pos[0];
-	data->player.x = pos[1];
+	data->player.y = pos[0] + 0.5;
+	data->player.x = pos[1] + 0.5;
 	c = data->map.grid[pos[0]][pos[1]];
 	set_player_dir(data, c);
 }

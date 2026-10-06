@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "../../include/cub3D.h"
 
 /* Una linea "en blanco" (solo espacios/tabs) se ignora en la config */
 int	is_blank_line(char *line)

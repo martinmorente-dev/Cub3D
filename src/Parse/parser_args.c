@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "../../include/cub3D.h"
 
 /* Comprueba que el nombre de archivo termina en ".cub" */
 int	check_extension(char *filename)
@@ -37,10 +37,11 @@ static void	init_data(t_data *data)
 {
 	data->fd = -1;
 	data->map.grid = NULL;
-	data->map.no_path = NULL;
-	data->map.so_path = NULL;
-	data->map.we_path = NULL;
-	data->map.ea_path = NULL;
+	data->map.images.paths[NORTH] = NULL;  // set_no
+	data->map.images.paths[SOUTH] = NULL;  // set_so
+	data->map.images.paths[WEST]  = NULL;  // set_we
+	data->map.images.paths[EAST]  = NULL;  // set_ea
+
 }
 
 /* Valida la extension y abre el archivo, guardando el fd en data */

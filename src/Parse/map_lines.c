@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "../../include/cub3D.h"
 
 /* Crea un nodo suelto de la lista, guardando el puntero a la linea */
 static t_lnode	*new_lnode(char *line)

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "../../include/cub3D.h"
 
 /* Devuelve la longitud de la linea sin contar el '\n' final */
 static int	line_len_no_nl(char *line)

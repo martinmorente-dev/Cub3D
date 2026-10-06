@@ -12,26 +12,10 @@
 
 #include "../../include/cub3D.h"
 
-void	free_matrix(void **pt)
-{
-	int	i;
 
-	i = 0;
-	while (pt[i])
-	{
-		free(pt[i]);
-		i++;
-	}
-	free(pt);
-}
-
-void	free_map_st(t_map map)
-{
-	free_matrix((void **)map.grid);
-}
 
 void	free_program(t_data *data)
 {
 	destroy_images(data);
-	free_map_st(data->map);
+	free_data(data);
 }

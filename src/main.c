@@ -12,46 +12,18 @@
 
 #include "../include/cub3D.h"
 
-// TODO change the main with the argc & argv
-char	**build_test_map(void)
-{
-	char	**grid;
-
-	grid = malloc(sizeof(char *) * 6);
-	grid[0] = ft_strdup("111111");
-	grid[1] = ft_strdup("100001");
-	grid[2] = ft_strdup("100001");
-	grid[3] = ft_strdup("100001");
-	grid[4] = ft_strdup("111111");
-	grid[5] = NULL;
-	return (grid);
-}
-
-int	main(void)
+int	main(int argc, char *argv[])
 {
 	t_data	data;
 
+	if (argc != 2)
+	{
+		ft_printf("Error\nusage: ./cub3D <map.cub>\n");
+		return (1);
+	}
 	ft_bzero(&data, sizeof(t_data));
 	ft_bzero(&data.keys, sizeof(t_keys));
-	data.map.grid = build_test_map();
-	data.map.width = 6;
-	data.map.height = 5;
-	data.map.floor_color[0] = 0;
-	data.map.floor_color[1] = 100;
-	data.map.floor_color[2] = 200;
-	data.map.ceiling_color[0] = 150;
-	data.map.ceiling_color[1] = 150;
-	data.map.ceiling_color[2] = 150;
-	data.map.images.paths[NORTH] = "./src/game/assets/ne_texture.xpm";
-	data.map.images.paths[SOUTH] = "./src/game/assets/so_texture.xpm";
-	data.map.images.paths[WEST] = "./src/game/assets/we_texture.xpm";
-	data.map.images.paths[EAST] = "./src/game/assets/se_texture.xpm";
-	data.player.x = 2.5;
-	data.player.y = 2.5;
-	data.player.dir_x = 0.707;
-	data.player.dir_y = 0.707;
-	data.player.plane_x = -0.66;
-	data.player.plane_y = 0.66;
+	parse_map(argv[1], &data);
 	game(&data);
 	return (0);
 }

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "../../include/cub3D.h"
 
 /* Una fila esta "vacia" si solo tiene espacios o el salto de linea */
 static int	is_blank_row(char *row)

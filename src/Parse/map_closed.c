@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "../../include/cub3D.h"
 
 /* Saca el nodo de arriba de la pila (el ultimo que se metio) */
 static t_point	*pop_point(t_point **stack)

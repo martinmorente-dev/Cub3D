@@ -7,10 +7,10 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/02 00:00:00 by rsanchez          #+#    #+#             */
 /*   Updated: 2026/10/02 00:00:00 by rsanchez         ###   ########.fr       */
-/*                                                                            */
+/*                                    parser                                        */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "../../include/cub3D.h"
 
 /*
 ** Valida y convierte UN componente de color: solo digitos y

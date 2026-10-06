@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "../../include/cub3D.h"
 
 /*
 ** Reserva una matriz de enteros del mismo tamaño que el mapa

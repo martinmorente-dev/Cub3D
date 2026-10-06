@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "../../include/cub3D.h"
 
 /*
 ** Lee el archivo hasta el final para forzar que get_next_line
@@ -38,7 +38,7 @@ static void	drain_fd(int fd)
 */
 void	parse_error(t_data *data, char *msg)
 {
-	printf("Error\n%s\n", msg);
+	ft_printf("Error\n%s\n", msg);
 	if (data)
 	{
 		drain_fd(data->fd);

@@ -10,23 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "../../include/cub3D.h"
+
+
 
 /* Libera las 4 rutas de textura, si estan reservadas */
 static void	free_textures(t_map *map)
 {
-	if (map->no_path)
-		free(map->no_path);
-	if (map->so_path)
-		free(map->so_path);
-	if (map->we_path)
-		free(map->we_path);
-	if (map->ea_path)
-		free(map->ea_path);
-	map->no_path = NULL;
-	map->so_path = NULL;
-	map->we_path = NULL;
-	map->ea_path = NULL;
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		// if (map->images.paths[i])
+		free(map->images.paths[i]);
+		map->images.paths[i++] = NULL;
+	}
 }
 
 /* Libera el grid completo: cada linea y despues el array */
