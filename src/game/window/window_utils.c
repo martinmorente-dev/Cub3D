@@ -6,12 +6,11 @@
 /*   By: mmorente <mmorente@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/23 11:28:18 by mmorente          #+#    #+#             */
-/*   Updated: 2026/09/28 12:52:15 by mmorente         ###   ########.fr       */
+/*   Updated: 2026/10/08 19:18:46 by martinmv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cub3D.h"
-
 
 void	destroy_images(t_data *data)
 {

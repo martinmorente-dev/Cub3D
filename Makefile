@@ -6,7 +6,7 @@
 #    By: mmorente <mmorente@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/08 12:06:42 by mmorente          #+#    #+#              #
-#    Updated: 2026/09/16 17:03:18 by mmorente         ###   ########.fr        #
+#    Updated: 2026/10/08 19:21:53 by martinmv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRCS = $(shell find src -name '*.c' | sort -u) \
 OBJ = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
 
 CC     = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g -std=gnu17
 
 MLX42_PATH  = libs/minilibx-linux
 LIBFT_PATH  = libs/libft

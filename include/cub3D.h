@@ -6,7 +6,7 @@
 /*   By: mmorente <mmorente@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 12:16:00 by mmorente          #+#    #+#             */
-/*   Updated: 2026/09/28 12:50:12 by mmorente         ###   ########.fr       */
+/*   Updated: 2026/10/08 19:18:19 by martinmv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,6 @@ typedef struct s_keys
 	int	right;
 }	t_keys;
 
-
 /*
 ** ============================================================
 ** t_data
@@ -215,7 +214,6 @@ typedef struct s_config_ctx
 	t_config_flags	*flags;
 	t_lnode			**lines;
 }	t_config_ctx;
-
 
 /* Manejo de errores */
 void	parse_error(t_data *data, char *msg);
