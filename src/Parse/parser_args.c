@@ -37,11 +37,10 @@ static void	init_data(t_data *data)
 {
 	data->fd = -1;
 	data->map.grid = NULL;
-	data->map.images.paths[NORTH] = NULL;  // set_no
-	data->map.images.paths[SOUTH] = NULL;  // set_so
-	data->map.images.paths[WEST]  = NULL;  // set_we
-	data->map.images.paths[EAST]  = NULL;  // set_ea
-
+	data->map.images.paths[NORTH] = NULL;
+	data->map.images.paths[SOUTH] = NULL;
+	data->map.images.paths[WEST] = NULL;
+	data->map.images.paths[EAST] = NULL;
 }
 
 /* Valida la extension y abre el archivo, guardando el fd en data */

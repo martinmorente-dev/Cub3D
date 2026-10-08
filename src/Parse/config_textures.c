@@ -64,7 +64,7 @@ int	set_we(t_config_ctx *ctx, char *line)
 {
 	if (ctx->flags->we)
 		config_error(ctx, "duplicate WE line in config");
-	ctx->data->map.images.paths[WEST]  = extract_path(ctx, line, 2);
+	ctx->data->map.images.paths[WEST] = extract_path(ctx, line, 2);
 	ctx->flags->we = 1;
 	return (1);
 }
@@ -74,7 +74,7 @@ int	set_ea(t_config_ctx *ctx, char *line)
 {
 	if (ctx->flags->ea)
 		config_error(ctx, "duplicate EA line in config");
-	ctx->data->map.images.paths[EAST]  = extract_path(ctx, line, 2);
+	ctx->data->map.images.paths[EAST] = extract_path(ctx, line, 2);
 	ctx->flags->ea = 1;
 	return (1);
 }
