@@ -12,7 +12,6 @@
 
 #include "../../include/cub3D.h"
 
-/* Crea un nodo suelto de la lista, guardando el puntero a la linea */
 static t_lnode	*new_lnode(char *line)
 {
 	t_lnode	*node;
@@ -25,7 +24,6 @@ static t_lnode	*new_lnode(char *line)
 	return (node);
 }
 
-/* Añade un nodo nuevo al final de la lista (head/tail) */
 static void	push_lnode(t_lnode **head, t_lnode **tail, char *line)
 {
 	t_lnode	*node;
@@ -40,7 +38,6 @@ static void	push_lnode(t_lnode **head, t_lnode **tail, char *line)
 	*tail = node;
 }
 
-/* Convierte la lista enlazada en un array char** terminado en NULL */
 static char	**lnode_list_to_grid(t_lnode *head, int len)
 {
 	char	**grid;
@@ -63,11 +60,6 @@ static char	**lnode_list_to_grid(t_lnode *head, int len)
 	return (grid);
 }
 
-/*
-** Lee TODO el archivo (configuracion + mapa) de una sola vez y
-** devuelve una lista enlazada con una linea por nodo. Separar
-** config de mapa se hace despues, fuera de esta funcion.
-*/
 t_lnode	*read_all_lines(int fd)
 {
 	t_lnode	*head;
@@ -85,11 +77,6 @@ t_lnode	*read_all_lines(int fd)
 	return (head);
 }
 
-/*
-** Convierte en map.grid la parte de la lista que ya sabemos que
-** es el mapa (la configuracion se ha consumido antes de llamar
-** a esta funcion, en parse_config).
-*/
 int	fill_map_grid(t_data *data, t_lnode *lines)
 {
 	t_lnode	*tmp;

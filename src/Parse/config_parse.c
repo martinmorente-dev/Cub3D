@@ -12,11 +12,6 @@
 
 #include "../../include/cub3D.h"
 
-/*
-** Decide que es esta linea y la procesa si es de configuracion.
-** Devuelve 1 si la linea era config (o en blanco, se ignora) y
-** hay que seguir leyendo; 0 si la linea es ya el mapa.
-*/
 static int	process_config_line(t_config_ctx *ctx, char *line)
 {
 	if (is_blank_line(line))
@@ -36,7 +31,6 @@ static int	process_config_line(t_config_ctx *ctx, char *line)
 	return (0);
 }
 
-/* Comprueba que las 6 lineas de configuracion han aparecido */
 static void	check_flags_complete(t_config_ctx *ctx)
 {
 	if (!ctx->flags->no || !ctx->flags->so || !ctx->flags->we
@@ -46,7 +40,6 @@ static void	check_flags_complete(t_config_ctx *ctx)
 		config_error(ctx, "missing F or C color line(s)");
 }
 
-/* Pone a 0 los 6 marcadores de "linea de config ya vista" */
 static void	init_flags(t_config_flags *flags)
 {
 	flags->no = 0;
@@ -57,11 +50,6 @@ static void	init_flags(t_config_flags *flags)
 	flags->c = 0;
 }
 
-/*
-** Funcion publica: lee todo el archivo, consume las lineas de
-** configuracion (rellenando t_map con texturas y colores) y deja
-** en fill_map_grid el resto de lineas, que ya son el mapa.
-*/
 void	parse_config(t_data *data)
 {
 	t_lnode			*lines;

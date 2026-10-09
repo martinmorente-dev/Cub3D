@@ -12,9 +12,6 @@
 
 #include "../../include/cub3D.h"
 
-
-
-/* Libera las 4 rutas de textura, si estan reservadas */
 static void	free_textures(t_map *map)
 {
 	int	i;
@@ -22,13 +19,11 @@ static void	free_textures(t_map *map)
 	i = 0;
 	while (i < 4)
 	{
-		// if (map->images.paths[i])
 		free(map->images.paths[i]);
 		map->images.paths[i++] = NULL;
 	}
 }
 
-/* Libera el grid completo: cada linea y despues el array */
 static void	free_grid(t_map *map)
 {
 	int	i;
@@ -45,7 +40,6 @@ static void	free_grid(t_map *map)
 	map->grid = NULL;
 }
 
-/* Libera todo lo reservado dentro de t_map */
 void	free_map(t_map *map)
 {
 	if (!map)
@@ -54,7 +48,6 @@ void	free_map(t_map *map)
 	free_textures(map);
 }
 
-/* Libera todo lo reservado dentro de t_data (por ahora solo el mapa) */
 void	free_data(t_data *data)
 {
 	if (!data)

@@ -12,7 +12,6 @@
 
 #include "../../include/cub3D.h"
 
-/* Una linea "en blanco" (solo espacios/tabs) se ignora en la config */
 int	is_blank_line(char *line)
 {
 	int	i;
@@ -23,7 +22,6 @@ int	is_blank_line(char *line)
 	return (line[i] == '\n' || line[i] == '\0');
 }
 
-/* Comprueba si "line" empieza por el identificador "id" + separador */
 int	match_id(char *line, char *id)
 {
 	size_t	len;
@@ -34,12 +32,6 @@ int	match_id(char *line, char *id)
 	return (line[len] == ' ' || line[len] == '\t');
 }
 
-/*
-** Punto unico de error DENTRO del parseo de configuracion.
-** Antes de llamar a parse_error, libera todas las lineas que
-** todavia quedaban pendientes (incluida la que estaba fallando),
-** para no dejar memoria fugada en un error a mitad de config.
-*/
 void	config_error(t_config_ctx *ctx, char *msg)
 {
 	t_lnode	*tmp;

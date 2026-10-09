@@ -12,13 +12,6 @@
 
 #include "../../include/cub3D.h"
 
-/*
-** Reserva una matriz de enteros del mismo tamaño que el mapa
-** (height filas x width columnas), inicializada a 0.
-** La usamos para marcar que casillas ya ha visitado el flood fill,
-** y asi no procesar la misma casilla dos veces ni entrar en un
-** bucle infinito.
-*/
 int	**alloc_visited(t_map *map)
 {
 	int	**visited;
@@ -43,7 +36,6 @@ int	**alloc_visited(t_map *map)
 	return (visited);
 }
 
-/* Libera la matriz de visitados, fila a fila y despues el array */
 void	free_visited(int **visited, int height)
 {
 	int	i;
@@ -59,11 +51,6 @@ void	free_visited(int **visited, int height)
 	free(visited);
 }
 
-/*
-** Crea un nodo suelto de la pila con una coordenada (y, x).
-** Lo usa el flood fill cada vez que descubre una casilla nueva
-** que todavia tiene que explorar.
-*/
 t_point	*new_point(int y, int x)
 {
 	t_point	*node;

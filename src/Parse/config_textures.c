@@ -12,12 +12,6 @@
 
 #include "../../include/cub3D.h"
 
-/*
-** Quita el identificador (2 letras: NO/SO/WE/EA) y los espacios
-** sobrantes alrededor, y comprueba que queda una ruta no vacia
-** y que el archivo existe y se puede abrir. Libera "path" antes
-** de cada error (incluso vacia, ft_strtrim reserva 1 byte).
-*/
 static char	*extract_path(t_config_ctx *ctx, char *line, int id_len)
 {
 	char	*path;
@@ -39,7 +33,6 @@ static char	*extract_path(t_config_ctx *ctx, char *line, int id_len)
 	return (path);
 }
 
-/* Guarda la ruta de la textura Norte, si no estaba ya puesta */
 int	set_no(t_config_ctx *ctx, char *line)
 {
 	if (ctx->flags->no)
@@ -49,7 +42,6 @@ int	set_no(t_config_ctx *ctx, char *line)
 	return (1);
 }
 
-/* Guarda la ruta de la textura Sur, si no estaba ya puesta */
 int	set_so(t_config_ctx *ctx, char *line)
 {
 	if (ctx->flags->so)
@@ -59,7 +51,6 @@ int	set_so(t_config_ctx *ctx, char *line)
 	return (1);
 }
 
-/* Guarda la ruta de la textura Oeste, si no estaba ya puesta */
 int	set_we(t_config_ctx *ctx, char *line)
 {
 	if (ctx->flags->we)
@@ -69,7 +60,6 @@ int	set_we(t_config_ctx *ctx, char *line)
 	return (1);
 }
 
-/* Guarda la ruta de la textura Este, si no estaba ya puesta */
 int	set_ea(t_config_ctx *ctx, char *line)
 {
 	if (ctx->flags->ea)

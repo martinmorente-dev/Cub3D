@@ -12,7 +12,6 @@
 
 #include "../../include/cub3D.h"
 
-/* Devuelve la longitud de la linea sin contar el '\n' final */
 static int	line_len_no_nl(char *line)
 {
 	int	len;
@@ -23,7 +22,6 @@ static int	line_len_no_nl(char *line)
 	return (len);
 }
 
-/* Calcula el ancho del mapa: la longitud de la fila mas larga */
 void	compute_map_width(t_map *map)
 {
 	int	i;
@@ -40,7 +38,6 @@ void	compute_map_width(t_map *map)
 	}
 }
 
-/* Comprueba si un caracter es uno de los 6 permitidos por el subject */
 static int	is_valid_map_char(char c)
 {
 	if (c == '0' || c == '1' || c == ' ')
@@ -50,7 +47,6 @@ static int	is_valid_map_char(char c)
 	return (0);
 }
 
-/* Recorre todo el mapa y lanza error si hay algun caracter invalido */
 void	validate_map_chars(t_data *data)
 {
 	int	i;

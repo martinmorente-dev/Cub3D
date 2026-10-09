@@ -12,7 +12,6 @@
 
 #include "../../include/cub3D.h"
 
-/* Comprueba que el nombre de archivo termina en ".cub" */
 int	check_extension(char *filename)
 {
 	size_t	len;
@@ -25,14 +24,6 @@ int	check_extension(char *filename)
 	return (1);
 }
 
-/*
-** Deja "data" en un estado seguro ANTES de poder fallar.
-** Si no hacemos esto, un error muy temprano (p.ej. extension
-** invalida) llamaria a parse_error con data->fd y los punteros
-** del mapa sin inicializar: drain_fd podria leer de un fd que
-** no es nuestro (hasta bloquearse leyendo de stdin) y free_map
-** podria intentar liberar memoria basura.
-*/
 static void	init_data(t_data *data)
 {
 	data->fd = -1;
@@ -43,7 +34,6 @@ static void	init_data(t_data *data)
 	data->map.images.paths[EAST] = NULL;
 }
 
-/* Valida la extension y abre el archivo, guardando el fd en data */
 int	open_cub_file(char *filename, t_data *data)
 {
 	int	fd;

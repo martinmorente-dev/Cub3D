@@ -12,12 +12,6 @@
 
 #include "../../include/cub3D.h"
 
-/*
-** Valida y convierte UN componente de color: solo digitos y
-** entre 0 y 255 (maximo 3 digitos, asi ft_atoi nunca desborda).
-** Devuelve -1 si no es valido (nunca un color real es negativo,
-** asi que sirve como valor de error).
-*/
 static int	parse_component(char *s)
 {
 	int	i;
@@ -36,7 +30,6 @@ static int	parse_component(char *s)
 	return (ft_atoi(s));
 }
 
-/* Libera un array de strings terminado en NULL (lo que crea ft_split) */
 static void	free_parts(char **parts)
 {
 	int	i;
@@ -47,11 +40,6 @@ static void	free_parts(char **parts)
 	free(parts);
 }
 
-/*
-** Separa "r,g,b" en sus 3 componentes y los guarda en color[3].
-** Libera "value" en cuanto deja de hacer falta, y libera "parts"
-** en CUALQUIER camino de salida (exito o error) antes de seguir.
-*/
 static void	fill_color(t_config_ctx *ctx, char *value, int *color)
 {
 	char	**parts;
@@ -80,7 +68,6 @@ static void	fill_color(t_config_ctx *ctx, char *value, int *color)
 	free_parts(parts);
 }
 
-/* Procesa la linea "F ..." (color del suelo), si no estaba ya puesta */
 int	set_floor_color(t_config_ctx *ctx, char *line)
 {
 	char	*value;
@@ -93,7 +80,6 @@ int	set_floor_color(t_config_ctx *ctx, char *line)
 	return (1);
 }
 
-/* Procesa la linea "C ..." (color del techo), si no estaba ya puesta */
 int	set_ceiling_color(t_config_ctx *ctx, char *line)
 {
 	char	*value;

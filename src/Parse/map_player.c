@@ -12,13 +12,11 @@
 
 #include "../../include/cub3D.h"
 
-/* Comprueba si un caracter es una de las 4 letras de jugador */
 static int	is_player_char(char c)
 {
 	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
-/* Calcula el angulo inicial y el vector direccion segun la letra */
 static void	set_player_dir(t_data *data, char c)
 {
 	if (c == 'N')
@@ -35,11 +33,6 @@ static void	set_player_dir(t_data *data, char c)
 	data->player.plane_y = data->player.dir_x * 0.66;
 }
 
-/*
-** Recorre todo el mapa buscando letras de jugador.
-** Guarda la primera que encuentra y cuenta cuantas hay en total,
-** para poder validar despues que hay exactamente una.
-*/
 static int	count_and_store_player(t_data *data, int *pos)
 {
 	int	i;
@@ -69,7 +62,6 @@ static int	count_and_store_player(t_data *data, int *pos)
 	return (count);
 }
 
-/* Localiza al jugador, valida que haya exactamente uno, y lo guarda */
 void	locate_player(t_data *data)
 {
 	int		pos[2];

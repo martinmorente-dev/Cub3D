@@ -12,11 +12,6 @@
 
 #include "../../include/cub3D.h"
 
-/*
-** Lee el archivo hasta el final para forzar que get_next_line
-** libere su buffer interno, y despues cierra el fd.
-** Evita dejar memoria reservada si morimos a mitad de lectura.
-*/
 static void	drain_fd(int fd)
 {
 	char	*tmp;
@@ -32,10 +27,6 @@ static void	drain_fd(int fd)
 	close(fd);
 }
 
-/*
-** Punto unico de salida por error de parseo.
-** Imprime "Error\n" + mensaje, limpia fd y memoria, y termina.
-*/
 void	parse_error(t_data *data, char *msg)
 {
 	ft_printf("Error\n%s\n", msg);
