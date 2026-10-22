@@ -1,4 +1,4 @@
-*This project has been created as part of the 42 curriculum by raulsanc, mmorente.*
+*This project has been created as part of the 42 curriculum by raulsanc, martinmorente-dev.*
 
 # cub3D
 
